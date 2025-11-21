@@ -2,6 +2,8 @@
 
 A Model Context Protocol (MCP) server that provides access to the OpenAlex API - a fully open catalog of the global research system covering over 240 million scholarly works.
 
+> **基于原项目**: 此项目基于 [openalex-mcp](https://github.com/reetp14/openalex-mcp) 修改而来
+
 ## Features
 
 This MCP server provides tools to search and retrieve:
