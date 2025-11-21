@@ -46,7 +46,7 @@ Add to your MCP client configuration:
   "mcpServers": {
     "openalex": {
       "command": "npx",
-      "args": ["openalex-mcp"]
+      "args": ["bach-openalex-mcp"]
     }
   }
 }
