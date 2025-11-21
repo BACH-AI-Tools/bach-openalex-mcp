@@ -23,7 +23,7 @@ This MCP server provides tools to search and retrieve:
 ### From npm (Recommended)
 
 ```bash
-npm install -g openalex-mcp
+npm install -g bach-openalex-mcp
 ```
 
 ### From Source
