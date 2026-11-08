@@ -1,7 +1,7 @@
 import { makeOpenAlexRequest } from "../utils.js";
 
 export async function classifyText(args: any) {
-    const { title, abstract, mailto } = args;
+    const { title, abstract, mailto, api_key, bearer_token } = args;
     const params: Record<string, any> = {};
     if (title)
         params.title = title;
@@ -9,6 +9,10 @@ export async function classifyText(args: any) {
         params.abstract = abstract;
     if (mailto)
         params.mailto = mailto;
+    if (api_key)
+        params.api_key = api_key;
+    if (bearer_token)
+        params.bearer_token = bearer_token;
     return {
         content: [{
                 type: "text",

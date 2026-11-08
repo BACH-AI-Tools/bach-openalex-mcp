@@ -95,6 +95,10 @@ All search tools support the full OpenAlex query grammar:
 - `select` - Comma-separated fields to return
 - `sample` - Random sample size with optional `seed`
 - `mailto` - Your email for higher rate limits
+- `api_key` - OpenAlex premium API key (sent as the `api_key` query parameter)
+- `bearer_token` - Bearer token (sent only as an `Authorization` header; overrides `OPENALEX_BEARER_TOKEN`)
+
+`mailto`, `api_key` and `bearer_token` are accepted by every tool that calls the OpenAlex API, including `get_entity`, `autocomplete` and `classify_text`.
 
 #### Single Entity Retrieval
 

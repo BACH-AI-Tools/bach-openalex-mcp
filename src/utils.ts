@@ -20,7 +20,9 @@ export function buildQueryString(params: Record<string, any>): string {
  * Helper function to make OpenAlex API requests
  */
 export async function makeOpenAlexRequest(endpoint: string, params: OpenAlexQueryParams = {}): Promise<any> {
-    const queryString = buildQueryString(params);
+    // The bearer token is a credential: send it only in the Authorization header, never in the URL
+    const { bearer_token, ...queryParams } = params;
+    const queryString = buildQueryString(queryParams);
     const url = `${OPENALEX_BASE_URL}${endpoint}${queryString ? '?' + queryString : ''}`;
     try {
         // Build User-Agent with mailto for polite pool access
@@ -41,7 +43,7 @@ export async function makeOpenAlexRequest(endpoint: string, params: OpenAlexQuer
         };
 
         // Add Bearer token - check parameter first, then environment variable
-        const bearerToken = params.bearer_token || process.env.OPENALEX_BEARER_TOKEN;
+        const bearerToken = bearer_token || process.env.OPENALEX_BEARER_TOKEN;
         if (bearerToken) {
             headers['Authorization'] = `Bearer ${bearerToken}`;
         }
