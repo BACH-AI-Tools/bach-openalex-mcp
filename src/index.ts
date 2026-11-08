@@ -254,7 +254,7 @@ const server = new Server({
             },
             {
                 name: "get_filterable_fields",
-                description: "Get a list of filterable field names and their types for a specified OpenAlex entity.",
+                description: "Get commonly used filter fields (name, type, description) for a specified OpenAlex entity. The list is not exhaustive ('complete': false); see the returned note for the full reference.",
                 inputSchema: {
                     type: "object",
                     properties: {
