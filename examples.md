@@ -277,12 +277,12 @@ The server will return error messages for common issues:
 - Network timeouts
 - Invalid parameter combinations
 
-Example error response:
+Errors returned by OpenAlex keep the reason from the response body (long messages are truncated to 1,000 characters). Example error response for `"filter": "from_publication_date:2023-13-45"`:
 ```json
 {
   "content": [{
     "type": "text", 
-    "text": "Error: OpenAlex API error: 400 - Bad Request"
+    "text": "Error: OpenAlex API error: 400 - Bad Request: Invalid query parameters error. Value for param from_publication_date is an invalid date. Format is yyyy-mm-dd (e.g. 2020-05-17)."
   }],
   "isError": true
 }

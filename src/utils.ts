@@ -1,7 +1,8 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { OpenAlexQueryParams } from "./types.js";
 
 const OPENALEX_BASE_URL = "https://api.openalex.org";
+const MAX_ERROR_DETAIL_LENGTH = 1000;
 
 /**
  * Helper function to build query string from parameters
@@ -54,8 +55,48 @@ export async function makeOpenAlexRequest(endpoint: string, params: OpenAlexQuer
     }
     catch (error) {
         if (axios.isAxiosError(error)) {
-            throw new Error(`OpenAlex API error: ${error.response?.status} - ${error.response?.statusText || error.message}`);
+            throw new Error(formatOpenAlexError(error));
         }
         throw error;
     }
+}
+
+/**
+ * Extract a human-readable reason from an OpenAlex error response body.
+ * OpenAlex returns JSON like {"error": "...", "message": "..."} for bad queries
+ * and a small HTML page for unknown URLs.
+ */
+function describeErrorBody(body: unknown): string {
+    if (typeof body === 'string') {
+        return body.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+    }
+    if (body && typeof body === 'object') {
+        const { error, message } = body as { error?: unknown; message?: unknown };
+        const parts = [error, message].filter((part): part is string => typeof part === 'string' && part.length > 0);
+        return parts.length > 0 ? parts.join(' ') : JSON.stringify(body);
+    }
+    return '';
+}
+
+/**
+ * Build the error message for a failed OpenAlex request, keeping the reason
+ * OpenAlex gave so that callers can correct their query.
+ */
+function formatOpenAlexError(error: AxiosError): string {
+    if (!error.response) {
+        return `OpenAlex API error: ${error.message}`;
+    }
+    const { status, statusText, data } = error.response;
+    let message = `OpenAlex API error: ${status} - ${statusText || error.message}`;
+    let detail = describeErrorBody(data);
+    if (detail.length > MAX_ERROR_DETAIL_LENGTH) {
+        detail = `${detail.slice(0, MAX_ERROR_DETAIL_LENGTH)}…`;
+    }
+    if (detail) {
+        message += `: ${detail}`;
+    }
+    if (status === 429) {
+        message += ' (rate limited: wait and retry; passing `mailto` or `api_key` raises the limit)';
+    }
+    return message;
 }
