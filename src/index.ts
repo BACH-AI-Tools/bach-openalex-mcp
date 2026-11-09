@@ -92,7 +92,8 @@ const server = new Server({
                         sample: { type: "number", description: "Random sample size" },
                         seed: { type: "number", description: "Random seed" },
                         mailto: { type: "string", description: "Email for rate limits" },
-                        api_key: { type: "string", description: "Premium API key" }
+                        api_key: { type: "string", description: "Premium API key" },
+                        bearer_token: { type: "string", description: "Bearer token for authentication" }
                     }
                 }
             },
@@ -113,7 +114,8 @@ const server = new Server({
                         sample: { type: "number", description: "Random sample size" },
                         seed: { type: "number", description: "Random seed" },
                         mailto: { type: "string", description: "Email for rate limits" },
-                        api_key: { type: "string", description: "Premium API key" }
+                        api_key: { type: "string", description: "Premium API key" },
+                        bearer_token: { type: "string", description: "Bearer token for authentication" }
                     }
                 }
             },
@@ -134,7 +136,8 @@ const server = new Server({
                         sample: { type: "number", description: "Random sample size" },
                         seed: { type: "number", description: "Random seed" },
                         mailto: { type: "string", description: "Email for rate limits" },
-                        api_key: { type: "string", description: "Premium API key" }
+                        api_key: { type: "string", description: "Premium API key" },
+                        bearer_token: { type: "string", description: "Bearer token for authentication" }
                     }
                 }
             },
@@ -155,7 +158,8 @@ const server = new Server({
                         sample: { type: "number", description: "Random sample size" },
                         seed: { type: "number", description: "Random seed" },
                         mailto: { type: "string", description: "Email for rate limits" },
-                        api_key: { type: "string", description: "Premium API key" }
+                        api_key: { type: "string", description: "Premium API key" },
+                        bearer_token: { type: "string", description: "Bearer token for authentication" }
                     }
                 }
             },
@@ -176,7 +180,8 @@ const server = new Server({
                         sample: { type: "number", description: "Random sample size" },
                         seed: { type: "number", description: "Random seed" },
                         mailto: { type: "string", description: "Email for rate limits" },
-                        api_key: { type: "string", description: "Premium API key" }
+                        api_key: { type: "string", description: "Premium API key" },
+                        bearer_token: { type: "string", description: "Bearer token for authentication" }
                     }
                 }
             },
@@ -197,7 +202,8 @@ const server = new Server({
                         sample: { type: "number", description: "Random sample size" },
                         seed: { type: "number", description: "Random seed" },
                         mailto: { type: "string", description: "Email for rate limits" },
-                        api_key: { type: "string", description: "Premium API key" }
+                        api_key: { type: "string", description: "Premium API key" },
+                        bearer_token: { type: "string", description: "Bearer token for authentication" }
                     }
                 }
             },
@@ -215,7 +221,8 @@ const server = new Server({
                         openalex_id: { type: "string", description: "OpenAlex ID (e.g., W2741809807, A1969205038)" },
                         select: { type: "string", description: "Comma-separated list of fields to return" },
                         mailto: { type: "string", description: "Email for rate limits" },
-                        api_key: { type: "string", description: "Premium API key" }
+                        api_key: { type: "string", description: "Premium API key" },
+                        bearer_token: { type: "string", description: "Bearer token for authentication" }
                     },
                     required: ["entity_type", "openalex_id"]
                 }
@@ -234,7 +241,8 @@ const server = new Server({
                         },
                         per_page: { type: "number", description: "Number of suggestions (max 50)" },
                         mailto: { type: "string", description: "Email for rate limits" },
-                        api_key: { type: "string", description: "Premium API key" }
+                        api_key: { type: "string", description: "Premium API key" },
+                        bearer_token: { type: "string", description: "Bearer token for authentication" }
                     },
                     required: ["search"]
                 }
@@ -248,7 +256,8 @@ const server = new Server({
                         title: { type: "string", description: "Title text to classify" },
                         abstract: { type: "string", description: "Abstract text to classify" },
                         mailto: { type: "string", description: "Email for rate limits" },
-                        api_key: { type: "string", description: "Premium API key" }
+                        api_key: { type: "string", description: "Premium API key" },
+                        bearer_token: { type: "string", description: "Bearer token for authentication" }
                     }
                 }
             },
